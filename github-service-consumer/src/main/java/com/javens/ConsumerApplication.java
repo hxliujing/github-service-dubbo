@@ -2,6 +2,9 @@ package com.javens;
 
 import com.javens.api.RpcTestService;
 import com.javens.conf.SpringContext;
+import com.javens.restart.RestartMainThread;
+import com.javens.restart.RestartParent;
+import com.javens.restart.RestartSubThread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -21,5 +24,27 @@ public class ConsumerApplication {
         RpcTestService rpcTestService  = (RpcTestService) SpringContext.getBean("rpcTestService");
         log.info("RPC from provider-->" + rpcTestService.hello());
         log.info("RPC from provider-->" + rpcTestService.exit());
+
+
+        //testRestartServerKill15();
+    }
+
+    /**
+     * kill-15 进程PID，JVM退出情况测试
+     *
+     * 结果：
+     *      kill -15 PID
+     *      kill PID
+     *      效果一致，JVM直接shutdown
+     */
+    private static void testRestartServerKill15() {
+        log.info("Run At: "+ System.getProperty("PID"));
+        int  times = 100;
+        long sleep = 2 * 1000;
+        RestartSubThread subThread = new RestartSubThread(times,sleep);
+        new Thread(subThread).start();
+
+        RestartParent mainThread = new RestartMainThread(times,sleep);
+        mainThread.run();
     }
 }
