@@ -1,5 +1,7 @@
 package com.javens;
 
+import com.javens.api.RpcClusterBroadcastService;
+import com.javens.api.RpcClusterFailoverService;
 import com.javens.api.RpcTestService;
 import com.javens.conf.SpringContext;
 import com.javens.restart.RestartMainThread;
@@ -27,6 +29,29 @@ public class ConsumerApplication {
 
 
         //testRestartServerKill15();
+        //testFailoverCluster();
+        testBroadcastCluster();
+
+        synchronized (ConsumerApplication.class) {
+            while (true) {
+                try {
+                    ConsumerApplication.class.wait();
+                } catch (InterruptedException e) {
+                    log.error("== synchronized error:", e);
+                }
+            }
+        }
+
+    }
+
+    private static void testBroadcastCluster() {
+        RpcClusterBroadcastService clusterService  = (RpcClusterBroadcastService) SpringContext.getBean("rpcClusterBroadcastService");
+        log.info(clusterService.clusterBroadcast());
+    }
+
+    private static void testFailoverCluster() {
+        RpcClusterFailoverService clusterService  = (RpcClusterFailoverService) SpringContext.getBean("rpcClusterFailoverService");
+        log.info(clusterService.clusterFailover());
     }
 
     /**

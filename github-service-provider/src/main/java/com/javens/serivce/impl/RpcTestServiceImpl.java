@@ -21,4 +21,5 @@ public class RpcTestServiceImpl implements RpcTestService {
         log.info("exit");
         return "exit";
     }
+
 }
