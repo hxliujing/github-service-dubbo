@@ -1,4 +1,4 @@
-## 消息服务
+## 框架概要
     github-service-dubbo  rpc基础框架
         github-service-api       # api
         github-service-consumer  # consumer
