@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>github-service-dubbo</artifactId>
+    <groupId>com.javens</groupId>
+    <version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+    <modules>
+        <module>github-service-provider</module>
+        <module>github-service-consumer</module>
+        <module>github-service-api</module>
+    </modules>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <github.service.version>1.0-SNAPSHOT</github.service.version>
+        <maven-eclipse-plugin.version>2.9</maven-eclipse-plugin.version>
+        <maven-dependency-plugin.version>2.1</maven-dependency-plugin.version>
+        <dubbo.version>2.5.4</dubbo.version>
+        <spring.boot.version>1.5.9.RELEASE</spring.boot.version>
+        <org.slf4j.version>1.7.21</org.slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
+        <zookeeper.version>3.4.6</zookeeper.version>
+        <zkclient.version>0.9</zkclient.version>
+        <com.alibaba.fastjson.version>1.2.4</com.alibaba.fastjson.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.javens</groupId>
+                <artifactId>github-service-api</artifactId>
+                <version>${github.service.version}</version>
+            </dependency>
+
+            <!-- slf4j+log4j相关   dubbo中采用的slf4j+logback，注意引入dubbo时候剔除logback防止进入死循环 -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${org.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${org.slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${org.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+
+            <!-- dubbo 需要的依赖 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+                <!-- 去除自带的spring版本 -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type><!--type 一般在pom引用依赖时候出现，其他时候不用-->
+                <scope>import</scope>
+            </dependency>
+
+            <!-- zookeeper -->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${com.alibaba.fastjson.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

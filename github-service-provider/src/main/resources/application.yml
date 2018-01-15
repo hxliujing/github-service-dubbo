@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev
+server:
+  port: 8081
+  context-path: /
+dubbo:
+  registry.address: 127.0.0.1:2181
+  application.name: github-service-provider
