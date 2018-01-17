@@ -2,6 +2,7 @@ package com.javens;
 
 import com.javens.api.RpcClusterBroadcastService;
 import com.javens.api.RpcClusterFailoverService;
+import com.javens.api.RpcMultiService;
 import com.javens.api.RpcTestService;
 import com.javens.conf.SpringContext;
 import com.javens.restart.RestartMainThread;
@@ -29,8 +30,8 @@ public class ConsumerApplication {
 
 
         //testRestartServerKill15();
-        //testFailoverCluster();
-        testBroadcastCluster();
+        testFailoverCluster();
+        //testBroadcastCluster();
 
         synchronized (ConsumerApplication.class) {
             while (true) {
@@ -50,8 +51,10 @@ public class ConsumerApplication {
     }
 
     private static void testFailoverCluster() {
-        RpcClusterFailoverService clusterService  = (RpcClusterFailoverService) SpringContext.getBean("rpcClusterFailoverService");
-        log.info(clusterService.clusterFailover());
+       // RpcClusterFailoverService clusterService  = (RpcClusterFailoverService) SpringContext.getBean("rpcClusterFailoverService");
+       // log.info(clusterService.clusterFailover());
+        RpcMultiService clusterService  = (RpcMultiService) SpringContext.getBean("rpcMultiService1");
+        log.info(clusterService.hello());
     }
 
     /**

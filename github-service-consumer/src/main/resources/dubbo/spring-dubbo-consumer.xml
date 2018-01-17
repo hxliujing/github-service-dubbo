@@ -7,10 +7,13 @@
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
    <dubbo:application name="${dubbo.application.name}"/>
-   <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}"/>
+   <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" check="true"/>
    <dubbo:reference interface="com.javens.api.RpcTestService" id="rpcTestService" check="false"/>
 
     <dubbo:reference interface="com.javens.api.RpcClusterFailoverService" id="rpcClusterFailoverService" check="false" retries="4"/>
     <dubbo:reference interface="com.javens.api.RpcClusterBroadcastService" id="rpcClusterBroadcastService" check="false" retries="4"/>
+
+    <dubbo:reference interface="com.javens.api.RpcMultiService" id="rpcMultiService1" check="false" group="hello1"/>
+    <dubbo:reference interface="com.javens.api.RpcMultiService" id="rpcMultiService2" check="false" group="hello2"/>
 
 </beans>

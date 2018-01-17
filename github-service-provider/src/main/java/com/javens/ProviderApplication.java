@@ -12,7 +12,6 @@ public class ProviderApplication {
     private static final Logger log = LoggerFactory.getLogger(ProviderApplication.class);
     public static void main(String[] args) {
         SpringApplication.run(ProviderApplication.class, args);
-        System.out.println("========>"+System.getProperty("dubbo.application.name"));
         log.info("github-service-provider  success----------");
     }
 }
