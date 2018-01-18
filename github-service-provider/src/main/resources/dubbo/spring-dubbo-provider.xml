@@ -54,6 +54,6 @@
     <dubbo:service  protocol="dubbo"  timeout="4000"  interface ="com.javens.api.RpcClusterBroadcastService" ref="rpcClusterBroadcastService" cluster="broadcast"/>
 
     <!--一个接口多种实现-->
-    <dubbo:service  protocol="dubbo"  timeout="4000"  interface ="com.javens.api.RpcMultiService" ref="rpcMultiService1" group="hello1" cluster="failfast"/>
+    <dubbo:service  protocol="dubbo"  timeout="4000"  interface ="com.javens.api.RpcMultiService" ref="rpcMultiService1" group="hello1" cluster="failsafe"/>
     <dubbo:service  protocol="dubbo"  timeout="4000"  interface ="com.javens.api.RpcMultiService" ref="rpcMultiService2" group="hello2" cluster="failsafe"/>
 </beans>

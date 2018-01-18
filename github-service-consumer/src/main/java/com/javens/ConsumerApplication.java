@@ -1,5 +1,6 @@
 package com.javens;
 
+import com.alibaba.dubbo.config.ProtocolConfig;
 import com.javens.api.RpcClusterBroadcastService;
 import com.javens.api.RpcClusterFailoverService;
 import com.javens.api.RpcMultiService;
@@ -33,6 +34,8 @@ public class ConsumerApplication {
         testFailoverCluster();
         //testBroadcastCluster();
 
+
+
         synchronized (ConsumerApplication.class) {
             while (true) {
                 try {
@@ -53,8 +56,13 @@ public class ConsumerApplication {
     private static void testFailoverCluster() {
        // RpcClusterFailoverService clusterService  = (RpcClusterFailoverService) SpringContext.getBean("rpcClusterFailoverService");
        // log.info(clusterService.clusterFailover());
-        RpcMultiService clusterService  = (RpcMultiService) SpringContext.getBean("rpcMultiService1");
-        log.info(clusterService.hello());
+        //RpcMultiService clusterService  = (RpcMultiService) SpringContext.getBean("rpcMultiService1");
+        //log.info(clusterService.hello());
+        RpcMultiService clusterService  = (RpcMultiService) SpringContext.getBean("rpcMultiService2");
+        for(int i=0;i<10000;i++){
+            log.info(clusterService.hello(i));
+        }
+
     }
 
     /**
@@ -74,5 +82,9 @@ public class ConsumerApplication {
 
         RestartParent mainThread = new RestartMainThread(times,sleep);
         mainThread.run();
+    }
+
+    public void destroy(){
+        ProtocolConfig.destroyAll();
     }
 }

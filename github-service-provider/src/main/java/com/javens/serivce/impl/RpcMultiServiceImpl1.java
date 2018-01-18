@@ -14,11 +14,17 @@ public class RpcMultiServiceImpl1 implements RpcMultiService {
     @Override
     public String hello() {
         logger.info("1->"+ UUID.randomUUID().toString());
-      /*  try {
+        try {
             Thread.sleep(1000 * 10);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
         return "hello-1";
+    }
+
+    @Override
+    public String hello(int i) {
+        logger.info("Receive:"+ i);
+        return String.valueOf(i);
     }
 }

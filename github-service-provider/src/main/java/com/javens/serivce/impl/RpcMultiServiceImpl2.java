@@ -21,4 +21,10 @@ public class RpcMultiServiceImpl2 implements RpcMultiService {
         }*/
         return "hello-2";
     }
+
+    @Override
+    public String hello(int i) {
+        logger.info("Receive:"+ i);
+        return String.valueOf(i);
+    }
 }
