@@ -9,7 +9,6 @@
    <dubbo:application name="${dubbo.application.name}"/>
    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" check="true"/>
    <dubbo:reference interface="com.javens.api.RpcTestService" id="rpcTestService" check="false"/>
-
     <dubbo:reference interface="com.javens.api.RpcClusterFailoverService" id="rpcClusterFailoverService" check="false" retries="4"/>
     <dubbo:reference interface="com.javens.api.RpcClusterBroadcastService" id="rpcClusterBroadcastService" check="false" retries="4"/>
 

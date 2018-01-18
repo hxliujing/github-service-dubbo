@@ -17,7 +17,7 @@
         <github.service.version>1.0-SNAPSHOT</github.service.version>
         <maven-eclipse-plugin.version>2.9</maven-eclipse-plugin.version>
         <maven-dependency-plugin.version>2.1</maven-dependency-plugin.version>
-        <dubbo.version>2.5.4</dubbo.version>
+        <dubbo.version>2.6.0</dubbo.version>
         <spring.boot.version>1.5.9.RELEASE</spring.boot.version>
         <org.slf4j.version>1.7.21</org.slf4j.version>
         <log4j.version>1.2.17</log4j.version>

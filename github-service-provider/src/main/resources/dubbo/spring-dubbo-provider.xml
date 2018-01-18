@@ -9,6 +9,7 @@
    <dubbo:application name="${dubbo.application.name}" owner="programmer" organization="javens" />
    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" check="true"/>
    <dubbo:protocol name="dubbo" port="1701" threads="1000" accepts="2000"/>
+   <dubbo:provider delay="-1"/>
    <dubbo:service  protocol="dubbo"  timeout="4000"  interface ="com.javens.api.RpcTestService" ref="rpcTestService"/>
 
     <!--DUBBO 集群容错方式-->

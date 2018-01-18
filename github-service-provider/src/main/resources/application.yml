@@ -5,5 +5,5 @@ server:
   port: 8081
   context-path: /
 dubbo:
-  registry.address: 10.211.55.2:2181
+  registry.address: 10.1.20.30:2181
   application.name: github-service-provider
